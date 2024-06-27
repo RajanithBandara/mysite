@@ -1,0 +1,40 @@
+.footer-section {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 30px 0;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .footer-info {
+    flex: 1;
+    margin: 10px;
+  }
+  
+  .footer-info h5 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .footer-link {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    margin-bottom: 5px;
+  }
+  
+  .footer-link:hover {
+    text-decoration: underline;
+  }
+  
+  .footer-bottom {
+    margin-top: 20px;
+    font-size: 0.8rem;
+  }
+  

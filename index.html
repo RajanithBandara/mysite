@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Material Design for Bootstrap</title>
+    <!-- MDB icon -->
+    <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <!-- Google Fonts Roboto -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
+    <!-- MDB -->
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
+  </head>
+  <body>
+    <section class="content-section">
+      <div>
+        <img src="assets/my.jpg" alt="Rajanith">
+      </div>
+      <div class="info">
+        <h2>Rajanith Bandara</h2>
+        <p>Highly motivated IT professional specializing in crafting cutting-edge software solutions. Proven expertise in Flutter, C#, and .NET application development. Demonstrated ability to lead teams and drive projects to successful completion</p>
+        <button type="button" 
+        style="background-color: rgb(31, 137, 31); box-shadow: 0px 1px 1px 1px rgba(44, 181, 44, 0.137);border-radius: 35px;" 
+        class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#qualificationModal">
+          Click here to view my qualifications
+        </button>
+      </div>
+    </section>
+
+    <div class="modal fade" id="qualificationModal" tabindex="-1" aria-labelledby="qualificationModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="qualificationModalLabel">My Qualifications</h5>
+            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul>
+              <li>Undergraduate of BSc(hons)Computer Science</li>
+              <li>Undergraduate of BSc Applied Sciences</li>
+              <li>Qualified web developer</li>
+              <li>Leadership skills on the best</li>
+              <li>Member of NSBM Maths Circle</li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="cards-section" id="cards-section">
+      <div class="card card-custom out-view">
+        <div class="card-body">
+          <h5 class="card-title">Graduation Year</h5>
+          <p class="card-text" id="countdown">Counting...</p>
+        </div>
+      </div>
+      <div class="card card-custom out-view">
+        <div class="card-body">
+          <h5 class="card-title">Current Projects</h5>
+          <p class="card-text">3 Projects</p>
+        </div>
+      </div>
+      <div class="card card-custom out-view">
+        <div class="card-body">
+          <h5 class="card-title">LinkedIn</h5>
+          <a href="https://www.linkedin.com" class="card-link"><i class="fab fa-linkedin"></i> LinkedIn Profile</a>
+        </div>
+      </div>
+    </section>      
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+
+        function countdown() {
+          const targetDate = new Date('2026-01-01').getTime();
+          const now = new Date().getTime();
+          const distance = targetDate - now;
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById('countdown').innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+          if (distance < 0) {
+            document.getElementById('countdown').innerText = 'Graduated!';
+          }
+        }
+
+        setInterval(countdown, 1000);
+
+        function handleScroll() {
+          const cards = document.querySelectorAll('.card-custom');
+          const triggerBottom = window.innerHeight / 5 * 4;
+
+          cards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top;
+
+            if (cardTop < triggerBottom) {
+              card.classList.add('in-view');
+              card.classList.remove('out-view');
+            } else {
+              card.classList.remove('in-view');
+              card.classList.add('out-view');
+            }
+          });
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+        handleScroll();
+      });
+    </script>
+
+  </body>
+</html>
