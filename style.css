@@ -4,6 +4,18 @@ body{
     background-size: cover;
     background-position: center;
 }
+#navbar{
+  background-color: rgba(203, 223, 204, 0.16) !important;
+  backdrop-filter: blur(10px) !important;
+  box-shadow: 0px 1px 1px 1px rgba(41, 40, 40, 0.05) !important;
+}
+.header .nav-link{
+  color: rgb(52, 54, 52) !important;
+  transition: all 0.35s ease-in-out !important;
+}
+.header .nav-link:hover{
+  color: rgb(150, 184, 17) !important;
+}
 .main-division{
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
@@ -12,6 +24,46 @@ body{
   padding: 0;
   height: auto;
   width: 100%;
+  z-index: -1;
+}
+.accordian-division{
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  height: auto;
+  display: flex;
+}
+/* Centering the accordion body */
+.accordion {
+  justify-content: center;
+}
+
+.accordion-item {
+  width: 100%; /* Adjust width as needed */
+  margin-bottom: 2px; /* Space between accordion items */
+  background-color: rgba(140, 211, 153, 0.16) !important;
+  backdrop-filter: blur(10px) !important  ;
+}
+
+.accordion-body {
+  text-align: center; /* Center-align text in the body */
+}
+
+.accordion-body ul {
+  list-style: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+  text-align: center; /* Center-align text */
+}
+
+.accordion-body ul li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.accordion-header .accordion-button {
+  background-color: rgba(255, 255, 255, 0.137) !important;
+  justify-content: center; /* Center-align accordion headers */
 }
 .content-section {
     display: flex;
@@ -62,6 +114,9 @@ body{
     max-width: 300px;
     margin: 20px;
     transition: transform 1s ease-in-out, opacity 1.35s ease-in-out;
+    background-color: rgb(212 224 212 / 88%) !important;
+    color: #393a39 !important;
+    backdrop-filter: blur(1px) !important;
   }
   
   .card-custom.in-view {

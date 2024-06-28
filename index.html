@@ -12,8 +12,6 @@
       Rajanith Bandara
     </title>
     <link rel="icon" href="assets/my.ico" type="image/x-icon" />
-    <!-- MDB icon -->
-    <!--<link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />-->
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -32,8 +30,8 @@
   <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <div class="main-division">
-    <header class="header">
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <header class="header"  data-mdb-offset>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary" id="navbar">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Rajanith Bandara</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,7 +71,7 @@
       });
 
     </script>
-    <section class="content-section">
+    <section class="content-section"  data-mdb-offset>
       <div>
         <img src="assets/my.jpg" alt="Rajanith">
       </div>
@@ -81,36 +79,53 @@
         <h2 class="h2-responsiveh2-responsive font-weight-bold text-center">Rajanith Bandara</h2>
         <p>Highly motivated IT professional specializing in crafting cutting-edge software solutions. Proven expertise in Flutter, C#, and .NET application development. Demonstrated ability to lead teams and drive projects to successful completion</p>
         <button type="button" 
-        style="background-color: rgb(31, 137, 31); box-shadow: 0px 1px 1px 1px rgba(44, 181, 44, 0.137);border-radius: 35px;" 
-        class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#qualificationModal">
-          Click here to view my qualifications
-        </button>
+          style="background-color: rgb(31, 137, 31); box-shadow: 0px 1px 1px 1px rgba(44, 181, 44, 0.137);border-radius: 35px;" 
+          class="btn btn-primary" data-mdb-toggle="collapse" data-mdb-target="#qualificationsAccordion">
+            Click here to view my qualifications
+          </button>
       </div>
     </section>
 
-    <div class="modal fade" id="qualificationModal" tabindex="-1" aria-labelledby="qualificationModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="qualificationModalLabel">My Qualifications</h5>
-            <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+    <!-- Modal -->
+     <div class="accordian-division">
+      <div class="collapse mt-3" id="qualificationsAccordion">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Undergraduate
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-mdb-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li>BSc(hons) Computer Science</li>
+                  <li>BSc Applied Sciences</li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="modal-body">
-            <ul>
-              <li>Undergraduate of BSc(hons)Computer Science</li>
-              <li>Undergraduate of BSc Applied Sciences</li>
-              <li>Qualified web developer</li>
-              <li>Leadership skills on the best</li>
-            </ul>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-mdb-toggle="collapse" data-mdb-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Professional Qualifications
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-mdb-parent="#accordionExample">
+              <div class="accordion-body">
+                <ul>
+                  <li>Qualified web developer</li>
+                  <li>Leadership skills on the best</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+     </div>
+    
 
-    <section class="cards-section" id="cards-section">
+    <section class="cards-section" id="cards-section"  data-mdb-offset>
       <div class="card card-custom out-view">
         <div class="card-body">
           <h5 class="card-title">Graduation Year</h5>
@@ -174,7 +189,7 @@
 
           cards.forEach(card => {
             const cardTop = card.getBoundingClientRect().top;
-
+            
             if (cardTop < triggerBottom) {
               card.classList.add('in-view');
               card.classList.remove('out-view');
@@ -191,7 +206,7 @@
       });
     </script>
   </div>
-<footer class="footer-section">
+<footer class="footer-section"  data-mdb-offset>
   <div class="footer-content">
     <div class="footer-info">
       <h5>Connect with me</h5>

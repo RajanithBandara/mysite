@@ -24,13 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (themeswitch.checked) {
           document.getElementById('light-mode').disabled = true;
           document.getElementById('dark-mode').disabled = false;
-          document.getElementById('themeIcon').classList.remove('fa-sun');
-          document.getElementById('themeIcon').classList.add('fa-moon');
         } else {
           document.getElementById('light-mode').disabled = false;
           document.getElementById('dark-mode').disabled = true;
-          document.getElementById('themeIcon').classList.remove('fa-moon');
-          document.getElementById('themeIcon').classList.add('fa-sun');
         }
       };
 });
