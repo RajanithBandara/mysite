@@ -1,3 +1,9 @@
+body{
+  transition: all 1s ease-in-out;
+  background-image: url('assets/background.jpeg');
+  background-size: cover;
+  background-position: center;
+}
 .main-division {
   background-color: rgba(18, 18, 18, 0.8);
   backdrop-filter: blur(10px);
