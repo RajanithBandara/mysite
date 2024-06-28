@@ -107,4 +107,20 @@ body{
     transform: translateY(100px);
     opacity: 0;
   }
+  .cv-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.cv-content {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.cv-content h2 {
+    margin-bottom: 1rem;
+}
 

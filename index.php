@@ -27,7 +27,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <div class="main-division">
     <?php include 'header/header.php'; ?>
-    <?php include 'conn/conn.php'; ?>   
+      
     <script>
       document.addEventListener('DOMContentLoaded', function() {
     const mainDivision = document.querySelector('.main-division');
