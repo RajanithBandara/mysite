@@ -1,0 +1,113 @@
+.main-division {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.main-division.loaded {
+    opacity: 1;
+}
+
+.animate-zoom-in {
+    animation: zoomInAnimation 0.75s ease-out;
+    opacity: 1;
+    transform-origin: center;
+}
+
+@keyframes zoomInAnimation {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+body{
+    transition: all 1s ease-in-out;
+    background-image: url('assets/background.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+.accordian-division{
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: center;
+  height: auto;
+  display: flex;
+}
+/* Centering the accordion body */
+.accordion {
+  justify-content: center;
+}
+
+.accordion-body {
+  text-align: center; /* Center-align text in the body */
+}
+
+.accordion-body ul {
+  list-style: none; /* Remove default list style */
+  padding: 0; /* Remove default padding */
+  text-align: center; /* Center-align text */
+}
+
+.accordion-body ul li {
+  margin-bottom: 10px; /* Space between list items */
+}
+
+.content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .content-section .info {
+    margin-top: 20px;
+    max-width: 500px;
+    z-index: 2; 
+  }
+  .content-section img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 18px;
+    z-index: 2; 
+  }
+  .cards-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 50px 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  .card-custom.in-view {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .card-custom.out-view {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+

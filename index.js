@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (theme == "dark"){
             lightMode.disabled = true;
             darkMode.disabled = false;
+            document.getElementById('themeSwitch').checked = true;	
         } else{
             lightMode.disabled = false;
             darkMode.disabled = true;
