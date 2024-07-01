@@ -75,7 +75,7 @@
     // SQL query to fetch all projects
     $sql = "SELECT * FROM projects";
     $result = $conn->query($sql);
-    $imagepath = "../assets/projectphoto";
+    $imagepath = "../assets/projectphoto/";
 
     if ($result->num_rows > 0) {
         // Function to find the correct image format
@@ -87,7 +87,7 @@
                     return $filepath;
                 }
             }
-            return "assets/default.png"; // Default image if no file found
+            return "{$basepath}default.png"; // Default image if no file found
         }
 
         // Output data of each row
@@ -96,11 +96,14 @@
             $projectName = $row["ProjectName"];
             $projectDescription = $row["ProjectDescription"];
             $imagePath = getImagePath($imagepath, $projectId);
+
+            // Debugging: Uncomment the next line to see the image path
+            // echo "Image Path: $imagePath<br>";
     ?>
             <!-- Display project item -->
             <div class="col-lg-6 col-md-8 mb-4">
                 <div class="project-item">
-                    <img src="<?php echo $imagePath; ?>" class="project-img img-fluid" alt="<?php echo $projectName; ?>">
+                    <img src="<?php echo $imagePath; ?>" class="project-img img-fluid rounded" alt="<?php echo $projectName; ?>">
                     <div class="project-description">
                         <h5 class="project-title"><?php echo $projectName; ?></h5>
                         <p class="project-text"><?php echo $projectDescription; ?></p>

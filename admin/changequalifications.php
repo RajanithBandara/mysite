@@ -11,7 +11,7 @@ if ($qualificationtype == "professional") {
     $stmt->bind_param("is", $qualificationid, $qualification);
 
     if ($stmt->execute()) {
-        echo "New professional qualification added successfully!";
+        echo "<div class='alert alert-success' role='alert>New professional qualification added successfully!</div>";
         include 'admin-panel.php'; // Redirect or include the admin panel page
     } else {
         echo "Error: " . $insertproq . "<br>" . $conn->error;
@@ -24,7 +24,7 @@ if ($qualificationtype == "professional") {
     $stmt->bind_param("is", $qualificationid, $qualification);
 
     if ($stmt->execute()) {
-        echo "New educational qualification added successfully!";
+        echo "<div class='alert alert-success' role='alert>New educational qualification added successfully!</div>";
         include 'admin-panel.php'; // Redirect or include the admin panel page
     } else {
         echo "Error: " . $inserteduq . "<br>" . $conn->error;
@@ -32,7 +32,7 @@ if ($qualificationtype == "professional") {
 
     $stmt->close();
 } else {
-    echo "Invalid qualification type.";
+    echo "<div class='alert alert-success' role='alert>Invalid qualification type.</div>";
 }
 
 $conn->close(); // Close the database connection
