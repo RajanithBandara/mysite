@@ -75,6 +75,7 @@
         // SQL query to fetch all projects
         $sql = "SELECT * FROM projects";
         $result = $conn->query($sql);
+        $imagepath = "assets/projectphoto";
 
         if ($result->num_rows > 0) {
             // Output data of each row
@@ -87,7 +88,7 @@
                 <div class="col-lg-6 col-md-8 mb-4">
                     <div class="project-item">
                         <!-- Replace with actual image path -->
-                        <img src="assets/project<?php echo $projectId; ?>.jpg" class="project-img img-fluid" alt="<?php echo $projectName; ?>">
+                        <img src="assets/projectphoto<?php echo $projectId; ?>.png" class="project-img img-fluid" alt="<?php echo $projectName; ?>">
                         <div class="project-description">
                             <h5 class="project-title"><?php echo $projectName; ?></h5>
                             <p class="project-text"><?php echo $projectDescription; ?></p>

@@ -297,31 +297,50 @@ if (!isset($_SESSION['loggedin'])) {
 
         <!-- Offcanvas for Change Qualifications -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="changeQualificationsOffcanvas" aria-labelledby="changeQualificationsLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="changeQualificationsLabel">Change Qualifications</h5>
-                <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="changeQualificationsLabel">Change Qualifications</h5>
+        <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <form method="POST" action="changequalifications.php">
+            <div class="form-outline mb-4" data-mdb-input-init>
+                <input type="text" name="qualificationid" class="form-control" id="qualificationID" required>
+                <label for="qualificationID" class="form-label">Qualification ID</label>
             </div>
-            <div class="offcanvas-body">
-                <form method="POST" action="changequalifications.php">
-                    <div class="form-outline mb-4" data-mdb-input-init>
-                        <input type="text" name="qualificationid" class="form-control" id="qualificationID" required>
-                        <label for="qualificationID" class="form-label">Qualification ID</label>
-                    </div>
-                    <div class="form-outline mb-4" data-mdb-input-init>
-                        <textarea name="qualificationdata" class="form-control" id="qualificationData" rows="3" required></textarea>
-                        <label for="qualificationData" class="form-label">Qualification Data</label>
-                    </div>
-                    <div class="mb-3">
-                        <label for="qualificationType" class="form-label">Qualification Type</label>
-                        <select name="qualificationtype" class="form-select" id="qualificationType" required>
-                            <option value="professional">Professional</option>
-                            <option value="educational">Educational</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Change Qualification</button>
-                </form>
+            <div class="form-outline mb-4" data-mdb-input-init>
+                <textarea name="qualificationdata" class="form-control" id="qualificationData" rows="3" required></textarea>
+                <label for="qualificationData" class="form-label">Qualification Data</label>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="qualificationType" class="form-label">Qualification Type</label>
+                <select name="qualificationtype" class="form-select" id="qualificationType" required>
+                    <option value="professional">Professional</option>
+                    <option value="educational">Educational</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Change Qualification</button>
+        </form>
+
+        <!-- Delete Qualification Section -->
+        <hr>
+        <h6>Delete Qualification</h6>
+        <form method="POST" action="deletequalification.php">
+            <div class="form-outline mb-4" data-mdb-input-init>
+                <input type="text" name="qualificationid_delete" class="form-control" id="qualificationID_delete" required>
+                <label for="qualificationID_delete" class="form-label">Qualification ID to Delete</label>
+            </div>
+            <div class="mb-3">
+                <label for="qualificationType" class="form-label">Qualification Type</label>
+                <select name="qualificationtype" class="form-select" id="qualificationType" required>
+                    <option value="professional">Professional</option>
+                    <option value="educational">Educational</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-danger">Delete Qualification</button>
+        </form>
+    </div>
+</div>
+
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>

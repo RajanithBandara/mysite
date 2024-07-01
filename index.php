@@ -40,7 +40,7 @@
             <h2 class="h2-responsive font-weight-bold text-center">Rajanith Bandara</h2>
             <p>
                 <?php
-                 $filename = "about.text";
+                 $filename = "about.txt";
                  if (file_exists($filename)){
                     $content = file_get_contents($filename);
                     echo nl2br($content);
