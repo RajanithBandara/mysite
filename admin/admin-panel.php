@@ -199,38 +199,126 @@ if (!isset($_SESSION['loggedin'])) {
                 </div>
             </div>
         </div>
+
+        <!-- Offcanvas for Edit Password -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="editPasswordOffcanvas" aria-labelledby="editPasswordLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="editPasswordLabel">Edit Password</h5>
                 <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body">  
+            <div class="offcanvas-body">
                 <form method="POST" action="pwdchange.php">
-                    <div class="mb-3">
-                        <label for="currentPassword" class="form-label">Current Password</label>
+                    <div class="form-outline mb-4" data-mdb-input-init>
                         <input type="password" name="currentpwd" class="form-control" id="currentPassword" required>
+                        <label for="currentPassword" class="form-label">Current Password</label>
                     </div>
-                    <div class="mb-3">
-                        <label for="newPassword" class="form-label">New Password</label>
+                    <div class="form-outline mb-4" data-mdb-input-init>                       
                         <input type="password" name="newpwd" class="form-control" id="newPassword" required>
+                        <label for="newPassword" class="form-label">New Password</label>
                     </div>
-                    <div class="mb-3">
-                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <div class="form-outline mb-4" data-mdb-input-init>                      
                         <input type="password" name="confirmpwd" class="form-control" id="confirmPassword" required>
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
                     </div>
                     <button type="submit" class="btn btn-primary">Change Password</button>
-                    
                 </form>
+            </div>
         </div>
-</div>
+
+        <!-- Offcanvas for Add Projects -->
         <div class="offcanvas offcanvas-start" tabindex="-1" id="addProjectsOffcanvas" aria-labelledby="addProjectsLabel">
             <div class="offcanvas-header">
                 <h5 class="offcanvas-title" id="addProjectsLabel">Add Projects</h5>
                 <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <form>
+                <form method="POST" action="addprojects.php">
+                <div class="mb-3">
+                    <label for="actionToggle" class="form-label">Action</label>
+                    <select name="action" id="actionToggle" class="form-select" onchange="toggleAction()">
+                        <option value="add" id="addact">Add Project</option>
+                        <option value="remove" id="removeact">Remove Project</option>
+                    </select>
+                    <script>
+                        function toggleAction() {
+                            var action = document.getElementById("actionToggle").value;
+                            if (action === "add") {
+                                document.getElementById("projectID").disabled = false;
+                                document.getElementById("projectName").disabled = false;
+                                document.getElementById("projectDescription").disabled = false;
+                                document.getElementById("projectPhoto").disabled = false;
+                            } else {
+                                document.getElementById("projectID").disabled = false;
+                                document.getElementById("projectName").disabled = true;
+                                document.getElementById("projectDescription").disabled = true;
+                                document.getElementById("projectPhoto").disabled = true;
+                                document.getElementById("sbmt").innerHTML = "Remove Project";
+                            }
+                        }
+                    </script>
+                </div>  
+                    <div class="form-outline mb-4" data-mdb-input-init>                       
+                        <input type="text" name="projectid" class="form-control" id="projectID" required>
+                        <label for="projectID" class="form-label">Project ID</label>
+                    </div>
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="text" name="projectname" class="form-control" id="projectName" required>
+                        <label for="projectName" class="form-label">Project Name</label>
+                    </div>
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <textarea name="projectdescription" class="form-control" id="projectDescription" rows="3" required></textarea>
+                        <label for="projectDescription" class="form-label">Project Description</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="projectPhoto" class="form-label">Project Photo (Optional)</label>
+                        <input type="file" name="projectphoto" class="form-control" id="projectPhoto">
+                    </div>
+                        <button type="submit" class="btn btn-primary" id="sbmt">Add Project</button>
+                </form>
+            </div>
+        </div>
 
+        <!-- Offcanvas for Change About -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="changeAboutOffcanvas" aria-labelledby="changeAboutLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="changeAboutLabel">Change About</h5>
+                <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form method="POST" action="changeabout.php">
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <textarea name="newabout" class="form-control" id="newabout" rows="3" required></textarea>
+                        <label for="newabout" class="form-label">New Qualification</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Change About</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Offcanvas for Change Qualifications -->
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="changeQualificationsOffcanvas" aria-labelledby="changeQualificationsLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="changeQualificationsLabel">Change Qualifications</h5>
+                <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <form method="POST" action="changequalifications.php">
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <input type="text" name="qualificationid" class="form-control" id="qualificationID" required>
+                        <label for="qualificationID" class="form-label">Qualification ID</label>
+                    </div>
+                    <div class="form-outline mb-4" data-mdb-input-init>
+                        <textarea name="qualificationdata" class="form-control" id="qualificationData" rows="3" required></textarea>
+                        <label for="qualificationData" class="form-label">Qualification Data</label>
+                    </div>
+                    <div class="mb-3">
+                        <label for="qualificationType" class="form-label">Qualification Type</label>
+                        <select name="qualificationtype" class="form-select" id="qualificationType" required>
+                            <option value="professional">Professional</option>
+                            <option value="educational">Educational</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Change Qualification</button>
                 </form>
             </div>
         </div>

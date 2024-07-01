@@ -19,22 +19,12 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.2/mdb.min.js"></script>
     <script src="index.js"></script>
-    <style>
-
-    </style>
-    <script type="text/javascript"> //<![CDATA[
-    var tlJsHost = ((window.location.protocol == "https:") ? "https://secure.trust-provider.com/" : "http://www.trustlogo.com/");
-    document.write(unescape("%3Cscript src='" + tlJsHost + "trustlogo/javascript/trustlogo.js' type='text/javascript'%3E%3C/script%3E"));
-    //]]></script>
-    <script language="JavaScript" type="text/javascript">
-    TrustLogo("https://www.positivessl.com/images/seals/positivessl_trust_seal_lg_222x54.png", "POSDV", "none");
-    </script>
 </head>
 <body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <div class="main-division">
     <?php include 'header/header.php'; ?>
-      
+    <?php include 'conn/conn.php';?>
     <script>
       document.addEventListener('DOMContentLoaded', function() {
     const mainDivision = document.querySelector('.main-division');
@@ -48,7 +38,18 @@
         </div>
         <div class="info">
             <h2 class="h2-responsive font-weight-bold text-center">Rajanith Bandara</h2>
-            <p>Highly motivated IT professional specializing in crafting cutting-edge software solutions. Proven expertise in Flutter, C#, and .NET application development. Demonstrated ability to lead teams and drive projects to successful completion</p>
+            <p>
+                <?php
+                 $filename = "about.text";
+                 if (file_exists($filename)){
+                    $content = file_get_contents($filename);
+                    echo nl2br($content);
+                 }
+                 else{
+                    echo "About me section is not available";
+                 }
+                ?>
+            </p>
             <button type="button"
                     style="background-color: rgb(31, 137, 31); box-shadow: 0px 1px 1px 1px rgba(44, 181, 44, 0.137);border-radius: 35px;"
                     class="btn btn-primary" data-mdb-toggle="collapse" data-mdb-target="#qualificationsAccordion">
@@ -71,8 +72,17 @@
                          data-mdb-parent="#accordionExample">
                         <div class="accordion-body">
                             <ul>
-                                <li>BSc(hons) Computer Science</li>
-                                <li>BSc Applied Sciences</li>
+                            <?php
+                                $sql = "SELECT * FROM qualifications";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<li>{$row['qualification']}</li>";
+                                    }
+                                } else {
+                                    echo "<tr><td colspan='2'>No qualifications found.</td></tr>";
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -88,8 +98,17 @@
                          data-mdb-parent="#accordionExample">
                         <div class="accordion-body">
                             <ul>
-                                <li>Qualified web developer</li>
-                                <li>Leadership skills on the best</li>
+                                <?php
+                                $sql = "SELECT * FROM proqualifications";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    while($row = $result->fetch_assoc()) {
+                                        echo "<li>{$row['Proq']}</li>";
+                                    }
+                                } else {
+                                    echo "No qualifications found.";
+                                }
+                                ?>
                             </ul>
                         </div>
                     </div>
@@ -108,7 +127,9 @@
         <div class="card card-custom out-view animate-zoom-in">
             <div class="card-body">
                 <h5 class="card-title">Current Projects</h5>
-                <p class="card-text" id="project-count">3 Projects</p>
+                <p class="card-text" id="project-count">
+                    
+                </p>
             </div>
         </div>
         <div class="card card-custom out-view animate-zoom-in">
@@ -157,18 +178,24 @@
         }
 
         setInterval(countdown, 1000);
-
+        <?php
+            $sql = "SELECT * FROM projects";
+            $result = $conn->query($sql);
+            $count = $result->num_rows;
+            echo "const projectCnt = $count;"	
+        ?>
+        
         function projectcountdown() {
             let count = 0;
-            const projectCount = 3;
+            const projectCount = projectCnt;
             const projectInterval = setInterval(() => {
                 if (count < projectCount) {
-                    count++;
+                    count = count + 1;
                     document.getElementById('project-count').innerText = `${count} Projects`;
                 } else {
                     clearInterval(projectInterval);
                 }
-            }, 1000);
+            }, 500);
         }
 
         projectcountdown();
