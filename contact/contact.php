@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="main-style.css">
     <style>
         .form-container {
-            background-color: rgba(255, 255, 255, 0.35);
-            backdrop-filter: blur(10px);
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -23,14 +21,14 @@
     </style>
 </head>
 <body>
-    <div class="main-division">
+    <div class="main-division" id="body">
         <?php include '../header/header.php'; ?>
 
         <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <div class="form-container">
-                        <h5 class="card-title text-center mb-4">Contact Me</h5>
+                    <div class="form-container" id="form-container">
+                        <h4 class="card-title text-center mb-4">Contact Me</h4>
                         <form method="POST">
                             <div class="form-outline mb-4">
                                 <input type="text" name="name" id="name" class="form-control" required />
@@ -48,28 +46,35 @@
                                 <textarea name="message" id="message" class="form-control" rows="4" required></textarea>
                                 <label class="form-label" for="message">Message</label>
                             </div>
-                            <button type="submit" class="btn btn-success btn-rounded d-block mx-auto" data-mdb-ripple-init>Send</button>
+                            <button type="submit" id="sbmtbtn" class="btn btn-success btn-rounded d-block mx-auto" data-mdb-ripple-init>Send</button>
                         </form>
                         <?php
-                            $name = $_POST['name'];
-                            $email = $_POST['email'];
-                            $topic = $_POST['topic'];
-                            $message = $_POST['message'];
-
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                $name = $_POST['name'];
+                                $email = $_POST['email'];
+                                $topic = $_POST['topic'];
+                                $message = $_POST['message'];
                         ?>
-                        <script>
-                            const name = "<?php echo $name; ?>";
-                            const email = "<?php echo $email; ?>";
-                            const topic = "<?php echo $topic; ?>";
-                            const message = "<?php echo $message; ?>";
-
-                            emailjs.send("service_ozafhnt","template_c5hzo9h",{
-                            topic: topic,
-                            from_name: name,
-                            message: message,
-                            reply_to: email,
-                            });
+                        <script type="text/javascript"
+                            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
                         </script>
+                        <script type="text/javascript">
+                            (function(){
+                                emailjs.init("iD3N29wV45GfU_SHc");
+                            })();
+                        </script>
+                        <script>
+                            document.getElementById('sbmtbtn').onsubmit = function(){
+                                emailjs.send("service_ozafhnt","template_c5hzo9h",{
+                                topic: "<?php echo $topic; ?>",
+                                from_name: "<?php echo $name; ?>",
+                                message: "<?php echo $message; ?>",
+                                reply_to: "<?php echo $email; ?>",
+                                });
+                            }
+                            
+                        </script>
+                        <?php } ?>
                     </div>
                 </div>
             </div>

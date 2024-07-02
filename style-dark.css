@@ -1,3 +1,17 @@
+.form-container{
+  background-color: rgb(112 150 118 / 12%) !important;
+  backdrop-filter: blur(10px) !important;
+}
+.form-label{
+  color: rgb(255 255 255 / 49%) !important;
+}
+.form-control{
+  background-color:#00000000;
+  color:white;
+}
+.card-title{
+  color: white !important;
+}
 body{
   transition: all 1s ease-in-out;
   background-image: url('assets/background.jpeg');

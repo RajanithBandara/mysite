@@ -61,6 +61,9 @@
                 text-align: left;
             }
         }
+        .main-division{
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body>
