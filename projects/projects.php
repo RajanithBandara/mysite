@@ -61,6 +61,9 @@
                 text-align: left;
             }
         }
+        .main-division{
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body>
@@ -70,40 +73,56 @@
     <?php include '../conn/conn.php';?>
 
     <div class="container mt-5">
-        <section class="row justify-content-center">
-        <?php
-        // SQL query to fetch all projects
-        $sql = "SELECT * FROM projects";
-        $result = $conn->query($sql);
-        $imagepath = "assets/projectphoto";
+    <section class="row justify-content-center">
+    <?php
+    // SQL query to fetch all projects
+    $sql = "SELECT * FROM projects";
+    $result = $conn->query($sql);
+    $imagepath = "../assets/projectphoto/";
 
-        if ($result->num_rows > 0) {
-            // Output data of each row
-            while($row = $result->fetch_assoc()) {
-                $projectId = $row["ProjectID"];
-                $projectName = $row["ProjectName"];
-                $projectDescription = $row["ProjectDescription"];
-        ?>
-                <!-- Display project item -->
-                <div class="col-lg-6 col-md-8 mb-4">
-                    <div class="project-item">
-                        <!-- Replace with actual image path -->
-                        <img src="assets/projectphoto<?php echo $projectId; ?>.png" class="project-img img-fluid" alt="<?php echo $projectName; ?>">
-                        <div class="project-description">
-                            <h5 class="project-title"><?php echo $projectName; ?></h5>
-                            <p class="project-text"><?php echo $projectDescription; ?></p>
-                        </div>
+    if ($result->num_rows > 0) {
+        // Function to find the correct image format
+        function getImagePath($basepath, $id) {
+            $formats = ['png', 'jpg', 'jpeg', 'gif'];
+            foreach ($formats as $format) {
+                $filepath = "{$basepath}{$id}.{$format}";
+                if (file_exists($filepath)) {
+                    return $filepath;
+                }
+            }
+            return "{$basepath}default.png"; // Default image if no file found
+        }
+
+        // Output data of each row
+        while($row = $result->fetch_assoc()) {
+            $projectId = $row["ProjectID"];
+            $projectName = $row["ProjectName"];
+            $projectDescription = $row["ProjectDescription"];
+            $imagePath = getImagePath($imagepath, $projectId);
+
+            // Debugging: Uncomment the next line to see the image path
+            // echo "Image Path: $imagePath<br>";
+    ?>
+            <!-- Display project item -->
+            <div class="col-lg-6 col-md-8 mb-4">
+                <div class="project-item">
+                    <img src="<?php echo $imagePath; ?>" class="project-img img-fluid rounded" alt="<?php echo $projectName; ?>">
+                    <div class="project-description">
+                        <h5 class="project-title"><?php echo $projectName; ?></h5>
+                        <p class="project-text"><?php echo $projectDescription; ?></p>
                     </div>
                 </div>
-        <?php
-            }
-        } else {
-            echo "No projects found.";
+            </div>
+    <?php
         }
-        $conn->close(); // Close MySQL connection
-        ?>
-        </section>
-    </div>
+    } else {
+        echo "No projects found.";
+    }
+    $conn->close(); // Close MySQL connection
+    ?>
+    </section>
+</div>
+
 </div>
 
     <?php include '../footer/footer.php';?>

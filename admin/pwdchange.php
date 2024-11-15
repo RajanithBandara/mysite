@@ -10,15 +10,15 @@
             if($newpwd == $confirmpwd){
                 $sql = "UPDATE admindata SET pasword = '$newpwd' WHERE pasword = '$currentpwd'";
                 if ($conn->query($sql) === TRUE) {
-                    echo "Password changed successfully";
+                    echo "<div class='alert alert-success' role='alert> Password changed successfully</div>";
                 } else {
                     echo "Error: " . $sql . "<br>" . $conn->error;
                 }
             }else{
-                echo "New password and confirm password do not match";
+                echo "<div class='alert alert-success' role='alert>New password and confirm password do not match</div>";
             }
         }else{
-            echo "Current password is incorrect";
+            echo "<div class='alert alert-success' role='alert>Current password is incorrect</div>";
         }
     }
 ?>

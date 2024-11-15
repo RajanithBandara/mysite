@@ -232,7 +232,7 @@ if (!isset($_SESSION['loggedin'])) {
                 <button type="button" class="btn-close text-reset" data-mdb-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-                <form method="POST" action="addprojects.php">
+                <form method="POST" action="addprojects.php" enctype="multipart/form-data">
                 <div class="mb-3">
                     <label for="actionToggle" class="form-label">Action</label>
                     <select name="action" id="actionToggle" class="form-select" onchange="toggleAction()">

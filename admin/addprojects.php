@@ -13,10 +13,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->affected_rows > 0) {
             echo "<div class='alert alert-success' role='alert'>Project deleted successfully!</div>";
-            include 'admin-panel.php';
         } else {
             echo "<div class='alert alert-danger' role='alert'>Failed to delete project.</div>";
-            include 'admin-panel.php';
         }
         $stmt->close();
     } elseif ($action == 'add') {
@@ -28,12 +26,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->affected_rows > 0) {
             echo "<div class='alert alert-success' role='alert'>Project added successfully!</div>";
-            include 'admin-panel.php';
         } else {
             echo "<div class='alert alert-danger' role='alert'>Failed to add project.</div>";
-            include 'admin-panel.php';
         }
         $stmt->close();
+
+        // Handle photo upload
+        if (isset($_FILES['projectphoto']) && $_FILES['projectphoto']['error'] == UPLOAD_ERR_OK) {
+            $photofile = $_FILES['projectphoto'];
+            $photoextension = pathinfo($photofile['name'], PATHINFO_EXTENSION);
+            $photodir = '../assets/projectphoto/';
+            $photopath = "{$photodir}{$projectid}.{$photoextension}";
+
+            if (!file_exists($photodir)) {
+                mkdir($photodir, 0777, true);
+            }
+
+            if (move_uploaded_file($photofile['tmp_name'], $photopath)) {
+                echo "<div class='alert alert-success' role='alert'>Project photo uploaded successfully!</div>";
+            } else {
+                echo "<div class='alert alert-danger' role='alert'>Failed to upload project photo.</div>";
+            }
+        }
     }
+
+    include 'admin-panel.php';
 }
+
+$conn->close(); // Close MySQL connection
 ?>

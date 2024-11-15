@@ -14,7 +14,7 @@
                       <a class="nav-link" href="http://localhost/mysite/projects/projects.php">Projects</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="#http://localhost/mysite/aboutpage/about.php">About</a>
+                      <a class="nav-link" href="http://localhost/mysite/contact/contact.php">Contact</a>
                   </li>
               </ul>
               <li class="nav-item align-items-center d-flex">
